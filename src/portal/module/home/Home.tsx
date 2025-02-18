@@ -12,6 +12,13 @@ import {
   Paper,
   Chip,
   Divider,
+  TableContainer,
+  Table,
+  TableHead,
+  TableCell,
+  TableBody,
+  TableRow,
+  TablePagination,
 } from '@mui/material';
 import {
   Code as CodeIcon,
@@ -24,12 +31,23 @@ import { Post } from '@/portal/components/card-post/CardPost';
 import { getNotificationToken } from '@/lib/firebase/requestNotification';
 
 export const Home = ({ posts }: { posts: Post[] }) => {
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event: unknown, newPage: number) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
   useEffect(() => {
     getNotificationToken();
   }, [])
 
   return (
-    
     <div className="min-h-screen bg-gray-50">
       {/* 1 Section */}
       <Box className="!bg-gradient-to-r !from-blue-600 !to-indigo-700 !text-white">
@@ -162,6 +180,66 @@ export const Home = ({ posts }: { posts: Post[] }) => {
           </Typography>
         </Container>
       </Box>
+
+      {/* 5 Section */}
+      <Container maxWidth="lg" className="!py-16 !my-8">
+        <Paper className="!overflow-hidden !bg-white !shadow-xl !rounded-xl">
+          <Typography variant="h4" className="!p-6 !font-bold !text-gray-800 !border-b">
+            Posts Data
+          </Typography>
+
+          <TableContainer className="!max-h-[600px]">
+            <Table stickyHeader>
+              <TableHead>
+                <TableRow>
+                  <TableCell className="!font-bold !text-gray-700 !bg-gray-50">ID</TableCell>
+                  <TableCell className="!font-bold !text-gray-700 !bg-gray-50 !min-w-[200px]">Title</TableCell>
+                  <TableCell className="!font-bold !text-gray-700 !bg-gray-50 !min-w-[300px]">Body</TableCell>
+                  <TableCell className="!font-bold !text-gray-700 !bg-gray-50 !w-[100px]">Actions</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {posts
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((post) => (
+                    <TableRow
+                      key={post.id}
+                      className="hover:!bg-blue-50 !transition-colors !duration-150"
+                    >
+                      <TableCell className="!text-gray-600">{post.id}</TableCell>
+                      <TableCell className="!text-gray-600 !max-w-xs !truncate">
+                        {post.title}
+                      </TableCell>
+                      <TableCell className="!text-gray-600 !max-w-md !truncate">
+                        {post.body}
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          variant="contained"
+                          size="small"
+                          className="!bg-blue-600 hover:!bg-blue-700 !min-w-[90px] !shadow-md !transition-all"
+                        >
+                          Detail
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={posts.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={handleChangePage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+            className="!border-t !bg-gray-50"
+          />
+        </Paper>
+      </Container>
     </div>
   )
 }
