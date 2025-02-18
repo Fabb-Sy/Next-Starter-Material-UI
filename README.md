@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NEXT APP 15 - React + TypeScript + Material UI + Tailwind CSS
 
-## Getting Started
+## 📂 Application Structure
 
-First, run the development server:
+The structure of this application separates components and features into clear modules to improve readability, maintainability, and scalability.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Example Module Structure: `auth/`
+
+```plaintext
+auth/
+├── login/
+│   ├── __tests__/
+│   │   └── Login.test.tsx
+│   ├── api/
+│   │   └── loginApi.ts
+│   ├── hooks/
+│   │   └── useLogin.ts
+│   ├── index.ts
+│   ├── login.data.ts
+│   ├── login.type.ts
+│   ├── Login.tsx
+│   └── Login.view.tsx
+└── index.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Example Simple Component Structure: `card/`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```plaintext
+card/
+├── card.ts
+├── card.data.ts
+├── card.type.ts
+├── Card.tsx
+└── Card.view.tsx
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🛠️ Module Creation Guide
 
-To learn more about Next.js, take a look at the following resources:
+### Basic Module Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```plaintext
+src/
+├── app/
+│   └── backoffice/
+│       └── master-data/
+│  
+│ 
+└── backoffice/
+    └── modules/
+        └── master-data/
+            └── [user]/
+                ├── api/
+                │   └── userApi.ts
+                ├── components/
+                │   └── [component-files]
+                ├── hooks/
+                │   └── [hook-files] 
+                ├── User.tsx
+                ├── User.view.tsx
+                └── user.type.ts
+```
