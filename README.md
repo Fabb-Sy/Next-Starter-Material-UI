@@ -1,4 +1,4 @@
-# NEXT APP 15 - React 19 + TypeScript + Material UI + Tailwind CSS + Firebase + 
+# NEXT APP 15 - React 19 + TypeScript + Material UI + Tailwind CSS + Firebase + SSR 
 
 ## 📂 Application Structure
 
