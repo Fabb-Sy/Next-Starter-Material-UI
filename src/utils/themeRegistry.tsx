@@ -24,7 +24,7 @@ const theme = createTheme({
 
 export default function ThemeRegistry({ children }: { children: React.ReactNode }) {
   return (
-    <AppRouterCacheProvider >
+    <AppRouterCacheProvider options={{ key: 'css' }}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {children}
