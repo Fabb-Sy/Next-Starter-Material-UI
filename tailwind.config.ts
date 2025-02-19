@@ -16,6 +16,20 @@ export default {
         foreground: "var(--foreground)",
       },
     },
+    fontFamily: {
+      poppins: ['var(--font-poppins)'],
+      lato: ['var(--font-lato)'],
+    },
+    container: {
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
+      center: true,
+    },
   },
   plugins: [],
 } satisfies Config;

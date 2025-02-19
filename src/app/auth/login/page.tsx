@@ -1,9 +1,7 @@
+import { Login } from "@/backoffice/module/auth/login";
+
 const LoginPage = () => {
-  return (
-    <>
-      <h1>Login</h1>
-    </>
-  );
+  return <Login />
 };
 
 export default LoginPage;

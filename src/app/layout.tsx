@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lato, Poppins } from "next/font/google";
 import "./globals.css";
 import ThemeRegistry from "../utils/themeRegistry";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const lato = Lato({
+  preload: true,
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['100', '300', '400', '700', '900'],
+  variable: '--font-lato',
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const poppins = Poppins({
+  preload: true,
+  subsets: ['latin'],
+  display: 'swap',
+  weight: ['100', '300', '400', '700', '900', '200', '500', '600', '800'],
+  variable: '--font-poppins',
 });
 
 export const metadata: Metadata = {
@@ -25,9 +31,14 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
+    <html lang="en"
+    suppressHydrationWarning
+    className={`${lato.variable} ${poppins.variable}`}
+    >
+      <head>
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${lato.variable} ${poppins.variable} antialiased`}
       >
         <ThemeRegistry>
           {children}

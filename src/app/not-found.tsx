@@ -1,6 +1,4 @@
-'use client'
-
-import { Container, Typography } from '@mui/material'
+import { Button, Container, Typography } from '@mui/material'
 
 export default function NotFound() {
   return (
@@ -17,11 +15,18 @@ export default function NotFound() {
       >
         Oops! Page Not Found
       </Typography>
-      <div className="!w-full !max-w-md !text-center !mb-8">
+      <div className="!w-full !max-w-md !text-center !mb-2">
         <Typography className="!text-gray-500 dark:!text-gray-400">
           The page you're looking for doesn't exist or has been moved.
         </Typography>
       </div>
-    </Container>
+      <Button
+        variant="contained"
+        color="primary"
+        className="!mt-8 !w-full !max-w-xs !rounded-full"
+        href="/">
+        Go to Home
+      </Button>
+    </Container >
   )
 }

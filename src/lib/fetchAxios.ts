@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, isAxiosError } from 'axios';
-import { getToken, refreshAuthToken } from './auth';
+import { getToken, refreshAuthToken } from './authToken';
 
 // Tambahkan state untuk menyimpan token
 let cachedToken: string | null = null;

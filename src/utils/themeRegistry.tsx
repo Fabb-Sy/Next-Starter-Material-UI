@@ -20,6 +20,18 @@ const theme = createTheme({
   palette: {
     mode: 'light',
   },
+  components: {
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          "&:-webkit-autofill": {
+            WebkitBoxShadow: "0 0 0 100px #fff inset !important",
+            WebkitTextFillColor: "#000 !important",
+          },
+        },
+      },
+    },
+  },
 });
 
 export default function ThemeRegistry({ children }: { children: React.ReactNode }) {

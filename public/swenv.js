@@ -1,13 +1,13 @@
 
       const process = {
         env: {
-          FB_API_KEY: 'AIzaSyD-LoNwqHDVA_-7zChdMp6CrwLfzLQJNVg',
-          FB_AUTHDOMAIN: 'evolearn-2472f.firebaseapp.com',
-          FB_PROJECTID: 'evolearn-2472f',
-          FB_STORAGEBUCKET: 'evolearn-2472f.firebasestorage.app',
-          FB_MESSAGINGSENDERID: '889004744370',
-          FB_APPID: '1:889004744370:web:65d75e726dbf2e5b4df3ab',
-          FB_MEASUREMENTID: 'G-9PPF9NDQBF',
+          FB_API_KEY: 'AIzaSyDm45xH-jei5e1JTkXHbLWopF39dnsKfNw',
+          FB_AUTHDOMAIN: 'next-starter-material-ui.firebaseapp.com',
+          FB_PROJECTID: 'next-starter-material-ui',
+          FB_STORAGEBUCKET: 'next-starter-material-ui.firebasestorage.app',
+          FB_MESSAGINGSENDERID: '48056794789',
+          FB_APPID: '1:48056794789:web:543733d51677eb8692574c',
+          FB_MEASUREMENTID: 'G-KZSMVPDTKP',
         }
       }
     

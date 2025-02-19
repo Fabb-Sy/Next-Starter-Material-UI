@@ -2,7 +2,6 @@ import { getToken } from 'firebase/messaging';
 import { messaging } from './firebaseConfig';
 
 const generateSwEnv = async () => {
-  console.log(process.env.NEXT_PUBLIC_SESSION_PASSWORD);
   try {
     const response = await fetch('/api/generate-sw-env', {
       headers: {
@@ -23,17 +22,14 @@ export const getNotificationToken = async () => {
       return null;
     }
 
-    // Generate SW env file first
-    await generateSwEnv();
-
-    // Then register service worker
     const registration = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+    
+    // Get messaging instance first
+    const messagingInstance = await messaging();
+    if (!messagingInstance) return null;
 
-    if (!messaging) {
-      return null;
-    }
-
-    const token = await getToken(messaging, {
+    // Then use it with getToken
+    const token = await getToken(messagingInstance, {
       vapidKey: process.env.NEXT_PUBLIC_VAPID_KEY,
       serviceWorkerRegistration: registration
     });

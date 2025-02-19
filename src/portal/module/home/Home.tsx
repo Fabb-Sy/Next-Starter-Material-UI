@@ -64,8 +64,9 @@ export const Home = ({ posts }: { posts: Post[] }) => {
                 <Button
                   variant="contained"
                   size="large"
+                  href='/auth/login'
                 >
-                  Button
+                  Get Started
                 </Button>
                 <Button
                   variant="outlined"

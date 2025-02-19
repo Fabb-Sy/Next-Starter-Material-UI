@@ -1,13 +1,14 @@
 import { writeFile } from 'fs/promises';
 import { headers } from 'next/headers';
+import { notFound } from 'next/navigation';
 import { NextResponse } from 'next/server';
 
-export async function GET(request: Request) {
+export async function GET() {
   const headersList = await headers();
   const authorization = headersList.get('authorization');
 
   if (!authorization || authorization !== `Bearer ${process.env.NEXT_PUBLIC_SESSION_PASSWORD}`) {
-    return NextResponse.redirect(new URL('/', request.url));
+    return notFound();
   }
 
   try {
