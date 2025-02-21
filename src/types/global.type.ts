@@ -16,3 +16,10 @@ export interface IsessionData extends Omit<IUserData, 'password'> {
   isLoggedIn: boolean,
   token: string,
 }
+
+export interface IUserGoogle {
+  id?: string;
+  name?: string;
+  email?: string;
+  image?: string;
+}

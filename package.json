@@ -1,5 +1,5 @@
 {
-  "name": "my-next-app",
+  "name": "next-starter-material-ui",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,15 +17,18 @@
     "@mui/material": "^6.4.4",
     "@mui/material-nextjs": "^6.4.3",
     "@next/bundle-analyzer": "^15.1.7",
-    "@types/jsonwebtoken": "^8.5.1",
+    "@types/jsonwebtoken": "^9.0.8",
     "axios": "^1.7.9",
+    "clsx": "^2.1.1",
     "firebase": "^11.3.1",
     "iron-session": "^8.0.4",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.2",
     "next": "15.1.7",
+    "next-auth": "^4.24.11",
     "next-recaptcha-v3": "^1.5.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

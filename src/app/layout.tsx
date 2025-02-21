@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Lato, Poppins } from "next/font/google";
 import "./globals.css";
-import ThemeRegistry from "../utils/themeRegistry";
+import GlobalProvider from "@/utils/globalProvider";
+import clsx from "clsx";
 
 const lato = Lato({
   preload: true,
@@ -32,17 +33,18 @@ export default function RootLayout({
 
   return (
     <html lang="en"
-    suppressHydrationWarning
-    className={`${lato.variable} ${poppins.variable}`}
+      suppressHydrationWarning
+      className={clsx(
+        lato.variable,
+        poppins.variable,
+      )}
     >
       <head>
       </head>
-      <body
-        className={`${lato.variable} ${poppins.variable} antialiased`}
-      >
-        <ThemeRegistry>
+      <body>
+        <GlobalProvider>
           {children}
-        </ThemeRegistry>
+        </GlobalProvider>
       </body>
     </html>
   );

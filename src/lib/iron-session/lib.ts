@@ -9,6 +9,15 @@ export const sessionOptions: SessionOptions = {
   }
 }
 
+export const sessionOptionsGoogle: SessionOptions = {
+  password: process.env.NEXT_PUBLIC_SESSION_PASSWORD!,
+  cookieName: 'auth-iron-google',
+  cookieOptions: {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+  }
+}
+
 export interface SessionDataJwt {
   jwt?: string;
 }
