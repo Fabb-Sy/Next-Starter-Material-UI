@@ -16,9 +16,12 @@ export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const authIronToken  = request.cookies.get('auth-iron')?.value;
   const nextAuthSessionToken = request.cookies.get("next-auth.session-token")?.value;
+  const nextAuthGoogleToken = request.cookies.get('auth-iron-google')?.value;
+
+  // console.log('Cookies: ', request.cookies)
 
   const isLoggedIn = !!authIronToken || !!nextAuthSessionToken;
-  
+
   // Allow access to public auth routes without token
   if (publicAuthRoutes.includes(path)) {
     // If user already has token, redirect to dashboard

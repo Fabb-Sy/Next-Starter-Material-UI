@@ -1,14 +1,17 @@
 'use client'
 
 import { useState } from 'react';
-import { Box, Paper, Avatar, Typography, IconButton, Menu, MenuItem, useTheme } from '@mui/material';
-import { KeyboardArrowDown, Settings, Person, Logout } from '@mui/icons-material';
+import { Box, Paper, Avatar, Typography, Menu, MenuItem, useTheme } from '@mui/material';
+import { KeyboardArrowDown, Person, Logout } from '@mui/icons-material';
 import { NavbarProps } from './navbar.type';
+import { logout as LogoutAction } from '@/lib/action';
+import { useRouter } from 'next/navigation';
 
 const NavbarView = ({ userName, userImage }: NavbarProps) => {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const router = useRouter();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -17,6 +20,18 @@ const NavbarView = ({ userName, userImage }: NavbarProps) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = async () => {
+    try {
+      // const resLogout = await fetchAxios({
+        
+      // })
+      await LogoutAction();
+      router.push('/');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <Box
@@ -82,7 +97,7 @@ const NavbarView = ({ userName, userImage }: NavbarProps) => {
         <MenuItem onClick={handleClose}>
           <Person sx={{ mr: 2 }} /> Profile
         </MenuItem>
-        <MenuItem onClick={handleClose} sx={{ color: 'error.main' }}>
+        <MenuItem onClick={handleLogout} sx={{ color: 'error.main' }}>
           <Logout sx={{ mr: 2 }} /> Logout
         </MenuItem>
       </Menu>

@@ -11,10 +11,10 @@ export const login = async (data: ILoginProps) => {
       const userDataSession = resApi.data;
 
       const sessionData: IsessionData = {
-        userId: userDataSession.userId,
-        email: userDataSession.email,
+        userId: userDataSession.id,
+        email: userDataSession.user_email,
         username: userDataSession.username,
-        role: userDataSession.role,
+        role: userDataSession.user_role,
         token: userDataSession.token,
         isLoggedIn: true,
       };
@@ -33,9 +33,9 @@ export const login = async (data: ILoginProps) => {
 }
 
 // Logout 
-export const Logout = async () => {
+export const logout = async () => {
   // handle logout action
   // clear cookies & session auth
-  removeToken();
+  await removeToken();
   console.log('Logout');
 }

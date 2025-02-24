@@ -1,7 +1,7 @@
 import { IsessionData } from '@/types/global.type';
 import jwt from "jsonwebtoken";
 
-// Generate token JWT
+// Convert to token JWT
 export const generateToken = (payload: IsessionData): string => {
   return jwt.sign(
     { ...payload },
@@ -13,7 +13,7 @@ export const generateToken = (payload: IsessionData): string => {
   );
 };
 
-// verify token
+// Verify token jwt
 export const verifyToken = (token: string) => {
   return jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET!, {
     algorithms: ['HS256']
@@ -22,7 +22,7 @@ export const verifyToken = (token: string) => {
 
 // Store token in cookies
 export const setToken = async (token: string): Promise<void> => {
-  await fetch('/api/store-session', {
+  await fetch('http://localhost:3000/api/store-session', {
     method: 'POST',
     body: JSON.stringify({ json: token }),
   });

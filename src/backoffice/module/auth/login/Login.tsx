@@ -6,18 +6,18 @@ import { useReCaptcha } from 'next-recaptcha-v3';
 import { useEffect, useState } from 'react';
 import { getNotificationToken } from '@/lib/firebase/requestNotification';
 import { signIn } from "next-auth/react";
-import { getCookiesIronSession } from '@/lib/decodeIronSession';
-import { SessionDataGoogle } from '@/types/global.type';
-import { getSessionGoogle } from '@/lib/next-auth/action';
+import { IsessionData } from '@/types/global.type';
+import { generateToken, setToken } from '@/lib/lib';
 
-export const Login = () => {
+export const Login = ({ dataGoogle }: { dataGoogle: any }) => {
+  console.log('dataGoogle: ', dataGoogle);
   const { executeRecaptcha } = useReCaptcha();
   const [showPassword, setShowPassword] = useState(false);
   const [fcmToken, setFcmToken] = useState<string | null>(null);
 
   useEffect(() => {
     const initializeFcmToken = async () => {
-      if (Notification.permission === 'granted' || 'default') {
+      if (Notification.permission === 'granted' || Notification.permission === 'default') {
         const token = await getNotificationToken();
         setFcmToken(token);
       }
@@ -27,12 +27,31 @@ export const Login = () => {
   }, []);
 
   useEffect(() => {
-    async () => {
-      console.log('Checking session...')
-      const googleSession = await getCookiesIronSession<SessionDataGoogle>('auth-iron-google')
-      console.log('Google: ', googleSession)    
-    }
-  }, [])
+    const handleGoogleData = async () => {
+      if (dataGoogle?.data) {
+        const userDataSession = dataGoogle.data;
+
+        const sessionData: IsessionData = {
+          userId: userDataSession.id,
+          email: userDataSession.user_email,
+          username: userDataSession.username,
+          role: userDataSession.user_role,
+          token: userDataSession.token,
+          isLoggedIn: true,
+        };
+
+        const token = generateToken(sessionData);
+        console.log('sessionData: ', sessionData);
+        console.log('token: ', token);
+        await setToken(token);
+
+        window.location.href = '/backoffice/dashboard';
+      }
+    };
+
+    handleGoogleData();
+  }, [dataGoogle]);
+
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
