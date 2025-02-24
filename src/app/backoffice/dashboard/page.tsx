@@ -1,9 +1,7 @@
-const Dashboard = () => {
-  return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <h1>Dashboard Backoffice</h1>
-    </div>
-  );
+import { Dashboard } from "@/backoffice/module/dashboard";
+
+const DashboardPage = () => {
+  return <Dashboard />
 };
 
-export default Dashboard;
+export default DashboardPage;

@@ -1,6 +1,14 @@
 import { Login } from "@/backoffice/module/auth/login";
+import { getSessionGoogle } from "@/lib/next-auth/action";
 
-const LoginPage = () => {
+const handleGoogleLogin = async () => {
+  const ironSessionGoogle = await getSessionGoogle();
+}
+
+const LoginPage = async () => {
+  const ironSessionGoogle = await getSessionGoogle();
+  console.log('Iron: ', ironSessionGoogle)
+
   return <Login />
 };
 

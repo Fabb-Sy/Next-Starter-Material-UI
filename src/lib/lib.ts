@@ -1,5 +1,5 @@
 import { IsessionData } from '@/types/global.type';
-import * as jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 // Generate token JWT
 export const generateToken = (payload: IsessionData): string => {

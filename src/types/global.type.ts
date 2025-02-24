@@ -1,12 +1,13 @@
 export interface ILoginProps {
-  email: string,
+  username: string,
   password: string,
-  tokenCaptcha: string,
+  tokenRecaptcha: string,
   fcmToken: string | null,
 }
 
 export interface IUserData {
   userId: string,
+  username: string,
   email: string,
   password: string,
   role: number,
@@ -15,4 +16,12 @@ export interface IUserData {
 export interface IsessionData extends Omit<IUserData, 'password'> {
   isLoggedIn: boolean,
   token: string,
+}
+
+export interface SessionDataGoogle {
+  googleUser?: {
+    email: string;
+    name: string;
+    image: string;
+  };
 }

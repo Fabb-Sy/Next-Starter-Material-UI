@@ -32,8 +32,8 @@ export default function RootLayout({
 
   return (
     <html lang="en"
-    suppressHydrationWarning
-    className={`${lato.variable} ${poppins.variable}`}
+      suppressHydrationWarning
+      className={`${lato.variable} ${poppins.variable}`}
     >
       <head>
       </head>

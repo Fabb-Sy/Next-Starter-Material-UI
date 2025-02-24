@@ -5,7 +5,7 @@ import axios from "axios";
 export const loginApi = async (data: ILoginProps) => {
   try {
     const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+      `${process.env.NEXT_PUBLIC_API_SERVER_URL}/v1/auth/login`,
       data
     );
     return res.data;

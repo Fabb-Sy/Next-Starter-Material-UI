@@ -1,11 +1,12 @@
 export interface LoginFormData {
-  email: string;
+  username: string;
   password: string;
 }
 
 export interface LoginViewProps {
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-  tooglePassword: () => void;
-  inputRef: React.RefObject<HTMLInputElement | null>;
+  handleGoogleLogin: () => void;
+  togglePassword: () => void;
+  showPassword: boolean;
   isLoading?: boolean;
 }

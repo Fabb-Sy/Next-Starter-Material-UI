@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { getCookiesIronSession } from './lib/decodeIronSession';
 
 // Define public auth routes that don't need token
 const publicAuthRoutes = [
@@ -8,23 +9,27 @@ const publicAuthRoutes = [
   '/auth/forgot-password',
   '/api/generate-sw-env',
   '/api/store-session',
+  '/api/auth/save-google-data',
 ];
 
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
-  const token = request.cookies.get('auth-iron')?.value;
+  const authIronToken  = request.cookies.get('auth-iron')?.value;
+  const nextAuthSessionToken = request.cookies.get("next-auth.session-token")?.value;
 
+  const isLoggedIn = !!authIronToken || !!nextAuthSessionToken;
+  
   // Allow access to public auth routes without token
   if (publicAuthRoutes.includes(path)) {
     // If user already has token, redirect to dashboard
-    if (token && path === '/auth/login') {
+    if (isLoggedIn && path === '/auth/login') {
       return NextResponse.redirect(new URL('/backoffice/dashboard', request.url))
     }
     return NextResponse.next()
   }
 
   // For protected routes, check token
-  if (!token && path.startsWith('/backoffice')) {
+  if (!isLoggedIn && path.startsWith('/backoffice')) {
     return NextResponse.redirect(new URL('/auth/login', request.url))
   }
 

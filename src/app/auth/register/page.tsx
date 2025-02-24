@@ -1,9 +1,7 @@
+import { Register } from "@/backoffice/module/auth/register";
+
 const RegisterPage = () => {
-  return (
-    <>
-      <h1>Register</h1>
-    </>
-  );
+  return <Register />
 };
 
 export default RegisterPage;

@@ -14,32 +14,35 @@ import {
 import {
   Visibility,
   VisibilityOff,
-  Email,
+  Person,
   Lock,
   Google,
   GitHub
 } from '@mui/icons-material';
 
-export const LoginView = ({ handleSubmit, tooglePassword, inputRef, isLoading }: LoginViewProps) => {
+export const LoginView = ({ handleSubmit, handleGoogleLogin, togglePassword, showPassword, isLoading }: LoginViewProps) => {
   return (
     <Box className="min-h-screen bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-items-end p-4">
       <Container maxWidth="sm">
         <Paper elevation={3} className="!p-8 !rounded-2xl">
-          <Typography variant="h4" className=" !font-medium !mb-6 !text-gray-800 !font-poppins">
-            Login
-          </Typography>
+          {/* Reload for layout page */}
+          <button className='!m-0 !p-0' onClick={() => window.location.href = '/'}>
+            <Typography variant="h4" className="!font-medium !mb-6 !text-gray-800 !font-poppins">
+              Login
+            </Typography>
+          </button>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <TextField
               fullWidth
-              name="email"
-              type="email"
-              label="Email"
+              name="username"
+              type="text"
+              label="Username"
               required
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Email className="!text-gray-400" />
+                    <Person className="!text-gray-400" />
                   </InputAdornment>
                 ),
               }}
@@ -48,9 +51,8 @@ export const LoginView = ({ handleSubmit, tooglePassword, inputRef, isLoading }:
 
             <TextField
               fullWidth
-              inputRef={inputRef}
               name="password"
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               label="Password"
               required
               InputProps={{
@@ -62,10 +64,10 @@ export const LoginView = ({ handleSubmit, tooglePassword, inputRef, isLoading }:
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton
-                      onClick={tooglePassword}
+                      onClick={togglePassword}
                       edge="end"
                     >
-                      {inputRef?.current?.type === 'text' ? <VisibilityOff /> : <Visibility />}
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -97,6 +99,7 @@ export const LoginView = ({ handleSubmit, tooglePassword, inputRef, isLoading }:
               fullWidth
               variant="outlined"
               startIcon={<Google />}
+              onClick={handleGoogleLogin}
               className="!normal-case"
             >
               Google
@@ -113,7 +116,7 @@ export const LoginView = ({ handleSubmit, tooglePassword, inputRef, isLoading }:
 
           <Typography className="!mt-6 !text-center !text-gray-600">
             Don't have an account?{' '}
-            <Link href="/register" className="!text-blue-600 hover:!text-blue-700">
+            <Link href="/auth/register" className="!text-blue-600 hover:!text-blue-700">
               Sign up
             </Link>
           </Typography>

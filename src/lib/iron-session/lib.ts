@@ -1,6 +1,6 @@
 import { SessionOptions } from "iron-session";
 
-export const sessionOptions: SessionOptions = {
+export const sessionOptionsAuth: SessionOptions = {
   password: process.env.NEXT_PUBLIC_SESSION_PASSWORD!,
   cookieName: 'auth-iron',
   cookieOptions: {
