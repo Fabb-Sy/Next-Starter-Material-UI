@@ -24,7 +24,7 @@ const NavbarView = ({ userName, userImage }: NavbarProps) => {
   const handleLogout = async () => {
     try {
       // const resLogout = await fetchAxios({
-        
+
       // })
       await LogoutAction();
       router.push('/');
@@ -37,12 +37,12 @@ const NavbarView = ({ userName, userImage }: NavbarProps) => {
     <Box
       sx={{
         height: 65,
-        bgcolor: 'background.paper',
         px: 3,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-end'
       }}
+      className="bg-gray-50"
     >
 
       <Paper

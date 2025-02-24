@@ -1,7 +1,16 @@
+import { Box } from '@mui/material';
+import { DashboardView } from './Dashboard.view';
+
+const dashboardData = {
+  totalUsers: 2458,
+  totalRevenue: '$43,256',
+  totalOrders: 1879,
+};
+
 export const Dashboard = () => {
   return (
-    <div>
-      <h1>Dashboard</h1>
-    </div>
-  )
-}
+    <Box className="p-0">
+      <DashboardView data={dashboardData} />
+    </Box>
+  );
+};

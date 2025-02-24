@@ -8,23 +8,23 @@ export const sidebarItems: SidebarItem[] = [
   },
   {
     icon: '/icons/sidebar/user.svg',
-    title: 'Manage User',
-    path: '#',
+    title: 'Example',
+    path: '/backoffice/example',
   },
   {
     icon: '/icons/sidebar/setting.svg',
     title: 'Master Data',
     links: [
       { 
-        label: 'Academic Level', 
+        label: 'Options 1', 
         link: '#', 
       },
       { 
-        label: 'School Level', 
+        label: 'Options 2', 
         link: '#', 
       },
       { 
-        label: 'Subject Category', 
+        label: 'Options 3', 
         link: '#', 
       }
     ],
