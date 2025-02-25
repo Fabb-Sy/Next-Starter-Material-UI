@@ -8,9 +8,9 @@ import { getNotificationToken } from '@/lib/firebase/requestNotification';
 import { signIn } from "next-auth/react";
 import { IsessionData } from '@/types/global.type';
 import { generateToken, setToken } from '@/lib/lib';
+import { deleteSessionGoogle } from '@/lib/next-auth/action';
 
 export const Login = ({ dataGoogle }: { dataGoogle: any }) => {
-  console.log('dataGoogle: ', dataGoogle);
   const { executeRecaptcha } = useReCaptcha();
   const [showPassword, setShowPassword] = useState(false);
   const [fcmToken, setFcmToken] = useState<string | null>(null);
@@ -44,6 +44,10 @@ export const Login = ({ dataGoogle }: { dataGoogle: any }) => {
         console.log('sessionData: ', sessionData);
         console.log('token: ', token);
         await setToken(token);
+        const deleteSession = async () => {
+          await deleteSessionGoogle();
+        };
+        deleteSession();
 
         window.location.href = '/backoffice/dashboard';
       }
